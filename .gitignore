@@ -1,0 +1,7 @@
+*.db
+*.env
+*.log
+.history/
+__pycache__/
+.vscode/
+Pipfile.lock
