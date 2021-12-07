@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from piec_CO.models import TemperatureIn, TemperatureOut, TemperatureReturn
-from .app_lib.queriesFromDB import get_data_to_template
+from .app_lib.queries_from_db import DataToTemplate
 
 
 '''
@@ -33,9 +33,11 @@ def temperature_all(request):
     pass
 
 def temperature_all_without_plot(request):
-    template = loader.get_template('web_home_page/temperature_all_without_polt.html')
-    context = {'temperature_in': get_data_to_template(TemperatureIn),
-              'temperature_out': get_data_to_template(TemperatureOut),
-              'temperature_return': get_data_to_template(TemperatureReturn)}
+    template = loader.get_template('web_home_page/temperature_all_without_plot.html')
+
+
+    context = {'temperature_in': DataToTemplate(TemperatureIn).          date_to_template,
+              'temperature_out': DataToTemplate(TemperatureOut).date_to_template,
+              'temperature_return': DataToTemplate(TemperatureReturn).date_to_template}
 
     return(HttpResponse(template.render(context, request)))
